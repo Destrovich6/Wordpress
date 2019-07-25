@@ -4,6 +4,12 @@ add_action('wp_enqueue_scripts', 'style_thems');
 add_action('wp_footer', 'donwald_scripts');
 add_action('after_setup_theme', 'myMenu');
 add_action('widgets_init', 'reg_sid');
+add_filter( 'document_title_separator', 'filter_function_name' );
+function filter_function_name( $sep ){
+    $sep = ' | ';
+
+    return $sep;
+}
 
 function reg_sid() {
     register_sidebar(array(
@@ -21,6 +27,7 @@ function myMenu() {
     register_nav_menu('top', 'Меню в шапке');
     register_nav_menu('bottom', 'Меню в подвале');
     add_theme_support( 'post-thumbnails', array( 'post' ) );
+    add_theme_support( 'title-tag' );
     add_filter( 'excerpt_length', function(){
         return 39;
     } );
@@ -46,6 +53,5 @@ function donwald_scripts() {
     wp_enqueue_script('slider', get_template_directory_uri() . "/assets/js/jquery.flexslider.js");
 	wp_enqueue_script('init', get_template_directory_uri() . "/assets/js/init.js");
 	wp_enqueue_script('dt', get_template_directory_uri() . "/assets/js/doubletaptogo.js");
-
 }
 
