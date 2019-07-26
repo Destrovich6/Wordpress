@@ -1,3 +1,9 @@
+<?php
+/*
+Template Name: Блог
+*/
+?>
+
 <?php get_header();?>
 
 <!-- Page Title
