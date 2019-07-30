@@ -1,9 +1,3 @@
-<?php
-/*
-Template Name: Отдельная страница для портфолио
-Template Post Type: portfolio
-*/
-?>
 <?php get_header(); ?>
 
 
@@ -38,17 +32,30 @@ Template Post Type: portfolio
 
                   <div class="entry-description">
 
-                     <p>Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor,
-                     nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate
-                     cursus a sit amet mauris. Morbi accumsan ipsum velit. Nam nec tellus a odio tincidunt auctor a
-                     ornare odio.</p>
+                     <p><?php the_field('about_project'); ?></p>
 
                   </div>
 
                   <ul class="portfolio-meta-list">
-						   <li><span>Date: </span>January 2014</li>
-						   <li><span>Client </span>Styleshout</li>
-						   <li><span>Skills: </span>Photoshop, Photography, Branding</li>
+                     <?php $date = get_field_object('project-end-date');
+                     $client = get_field_object('client');
+                      ?>
+						   <li><span><?php echo $date['label']; ?></span><?php echo $date['value']; ?></li>
+						   <li><span><?php echo $client['label']; ?></span><?php echo $client['value']; ?></li>
+						   <li><span>Skills: </span><?php $terms = get_the_terms( $post->ID, 'skills' );
+if ( !empty( $terms ) && !is_wp_error( $terms ) ) {
+   $count = count($terms);
+   $i=0;
+   foreach( $terms as $term ){
+      $i++;
+      $term_list = $term->name;
+      if ($count != $i) {
+         $term_list .= ', ';
+      }
+   echo $term_list;
+   }
+} 
+?></li>
 				      </ul>
 
                   <a class="button" href="http://behance.net">View project</a>
@@ -59,17 +66,13 @@ Template Post Type: portfolio
 
                <div class="entry-media">
 
-                  <img src="images/portfolio/entries/geometric-backgrounds-01.jpg" alt="" />
-
-                  <img src="images/portfolio/entries/geometric-backgrounds-02.jpg" alt="" />
+                  <?php the_post_thumbnail(); ?>
 
                </div>
 
                <div class="entry-excerpt">
 
-				      <p>Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor,
-                  nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate
-                  cursus a sit amet mauris. Morbi accumsan ipsum velit. </p>
+				      <p><?php the_field('about_project'); ?></p>
 
 					</div>
 

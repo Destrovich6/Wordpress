@@ -49,7 +49,7 @@ Template Name: Портфолио
 
                   <?php // параметры по умолчанию
                   $posts = get_posts( array(
-                     'numberposts' => 6,
+                     'numberposts' => '',
                      'post_type'   => 'portfolio',
                      'suppress_filters' => true, // подавление работы фильтров изменения SQL запроса
                   ) );
@@ -67,16 +67,13 @@ Template Name: Портфолио
                            </a>
                            <div class="portfolio-item-meta">
                               <h5><a href="<?php the_permalink() ?>"><?php the_title() ?></a></h5>
-                              <p><?php the_excerpt() ?></p>
+                              <p><?php $term = get_the_terms( $post->ID, 'skills' ); echo $term['0']->name; ?></p>
                            </div>
                         </div>
                      </div>
                   <?php }
 
                   wp_reset_postdata(); // сброс ?>
-
-                  
-
 
                </div>
 

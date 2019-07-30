@@ -105,62 +105,33 @@
          </div>
 
          <div id="portfolio-wrapper" class="bgrid-quarters s-bgrid-halves">
+                <?php // параметры по умолчанию
+                  $posts = get_posts( array(
+                     'numberposts' => '4',
+                     'post_type'   => 'portfolio',
+                     'suppress_filters' => true, // подавление работы фильтров изменения SQL запроса
+                  ) );
 
-           <div class="columns portfolio-item">
+                  foreach( $posts as $post ){
+                     setup_postdata($post);
+                      // формат вывода the_title() ...
+                  ?>
+          <div class="columns portfolio-item">
                <div class="item-wrap">
-               <a href="portfolio.html">
-                     <img alt="" src="images/portfolio/geometrics.jpg">
+                  <a href="<?php the_permalink(); ?>">
+                     <?php the_post_thumbnail(); ?>
                      <div class="overlay"></div>
                      <div class="link-icon"><i class="fa fa-link"></i></div>
                   </a>
-              <div class="portfolio-item-meta">
-                 <h5><a href="portfolio.html">Geometrics</a></h5>
-                     <p>Illustration</p>
-              </div>
+                  <div class="portfolio-item-meta">
+                     <h5><a href="portfolio.html"><?php the_title(); ?></a></h5>
+                         <p><?php $term = get_the_terms( $post->ID, 'skills' ); echo $term['0']->name; ?></p>
+                  </div>
                </div>
           </div>
+                <?php }
 
-            <div class="columns portfolio-item">
-               <div class="item-wrap">
-               <a href="portfolio.html">
-                     <img alt="" src="images/portfolio/console.jpg">
-                     <div class="overlay"></div>
-                     <div class="link-icon"><i class="fa fa-link"></i></div>
-                  </a>
-              <div class="portfolio-item-meta">
-                 <h5><a href="portfolio.html">Console</a></h5>
-                     <p>Web Development</p>
-              </div>
-               </div>
-          </div>
-
-            <div class="columns portfolio-item s-first">
-               <div class="item-wrap">
-               <a href="portfolio.html">
-                     <img alt="" src="images/portfolio/camera-man.jpg">
-                     <div class="overlay"></div>
-                     <div class="link-icon"><i class="fa fa-link"></i></div>
-                  </a>
-              <div class="portfolio-item-meta">
-                 <h5><a href="portfolio.html">Camera Man</a></h5>
-                     <p>Photography</p>
-              </div>
-               </div>
-          </div>
-
-            <div class="columns portfolio-item">
-               <div class="item-wrap">
-               <a href="portfolio.html">
-                     <img alt="" src="images/portfolio/into-the-light.jpg">
-                     <div class="overlay"></div>
-                     <div class="link-icon"><i class="fa fa-link"></i></div>
-                  </a>
-              <div class="portfolio-item-meta">
-                 <h5><a href="portfolio.html">Into The Light</a></h5>
-                     <p>Branding</p>
-              </div>
-               </div>
-          </div>
+                  wp_reset_postdata(); // сброс ?>
 
          </div>
 
