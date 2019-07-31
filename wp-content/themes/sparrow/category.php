@@ -30,15 +30,18 @@ Template Name: Блог
     <div id="page-content" class="row">
 
         <div id="primary" class="eight columns">
+
+            <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
+
             <article class="post">
 
                 <div class="entry-header cf">
 
-                    <h1><a href="single.html" title="">Proin gravida nibh vel velit auctor aliquet Aenean sollicitudin auctor.</a></h1>
+                    <h1><a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></h1>
 
                     <p class="post-meta">
 
-                        <time class="date" datetime="2014-01-14T11:24">Jan 14, 2014</time>
+                        <time class="date" datetime=""><?php the_time('M j, Y'); ?></time>
                         /
                         <span class="categories">
                      <a href="#">Design</a> /
@@ -65,75 +68,10 @@ Template Name: Блог
 
             </article> <!-- post end -->
 
-            <article class="post">
+            <?php endwhile; else : ?>
+            <?php endif; ?>
 
-                <div class="entry-header cf">
 
-                    <h1><a href="single.html" title="">Proin gravida nibh vel velit auctor aliquet Aenean sollicitudin auctor.</a></h1>
-
-                    <p class="post-meta">
-
-                        <time class="date" datetime="2014-01-14T11:24">Jan 14, 2013</time>
-                        /
-                        <span class="categories">
-                     <a href="#">Design</a> /
-                     <a href="#">User Inferface</a> /
-                     <a href="#">Web Design</a>
-                     </span>
-
-                    </p>
-
-                </div>
-
-                <div class="post-thumb">
-                    <a href="single.html" title=""><img src="images/post-image/post-image-1300x500-02.jpg" alt="post-image" title="post-image"></a>
-                </div>
-
-                <div class="post-content">
-
-                    <p>Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor,
-                        nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate
-                        cursus a sit amet mauris. Morbi accumsan ipsum velit. Nam nec tellus a odio tincidunt auctor a
-                        ornare odio. Sed non  mauris vitae erat consequat auctor eu in elit. </p>
-
-                </div>
-
-            </article> <!-- post end -->
-
-            <article class="post">
-
-                <div class="entry-header cf">
-
-                    <h1><a href="single.html" title="">Proin gravida nibh vel velit auctor aliquet Aenean sollicitudin auctor.</a></h1>
-
-                    <p class="post-meta">
-
-                        <time class="date" datetime="2014-01-14T11:24">Jan 14, 2014</time>
-                        /
-                        <span class="categories">
-                     <a href="#">Design</a> /
-                     <a href="#">User Inferface</a> /
-                     <a href="#">Web Design</a>
-                     </span>
-
-                    </p>
-
-                </div>
-
-                <div class="post-thumb">
-                    <a href="single.html" title=""><img src="images/post-image/post-image-1300x500-03.jpg" alt="post-image" title="post-image"></a>
-                </div>
-
-                <div class="post-content">
-
-                    <p>Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor,
-                        nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate
-                        cursus a sit amet mauris. Morbi accumsan ipsum velit. Nam nec tellus a odio tincidunt auctor a
-                        ornare odio. Sed non  mauris vitae erat consequat auctor eu in elit. </p>
-
-                </div>
-
-            </article> <!-- post end -->
 
             <!-- Pagination -->
             <nav class="col full pagination">
