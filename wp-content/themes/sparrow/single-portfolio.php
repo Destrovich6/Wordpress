@@ -81,8 +81,8 @@ if ( !empty( $terms ) && !is_wp_error( $terms ) ) {
          </section> <!-- end section -->
 
          <ul class="post-nav cf">
-			   <li class="prev"><a href="#" rel="prev"><strong>Previous Entry</strong> Duis Sed Odio Sit Amet Nibh Vulputate</a></li>
-				<li class="next"><a href="#" rel="next"><strong>Next Entry</strong> Morbi Elit Consequat Ipsum</a></li>
+			   <li class="prev"><?php previous_post_link( $format = '%link', $link = '<strong>Previous Entry</strong> %title'); ?></li>
+				<li class="next"><?php next_post_link( $format = '%link', $link = '<strong>Next Entry</strong> %title'); ?></li>
 			</ul>
 
       </div>

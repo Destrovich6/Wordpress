@@ -50,6 +50,8 @@ Template Name: Портфолио
                   <?php // параметры по умолчанию
                   $posts = get_posts( array(
                      'numberposts' => '',
+                     'orderby'     => 'date',
+                     'order'       => 'ASC',
                      'post_type'   => 'portfolio',
                      'suppress_filters' => true, // подавление работы фильтров изменения SQL запроса
                   ) );
