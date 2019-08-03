@@ -22,7 +22,6 @@ Template Name: Блог
     </div>
 
 </div> <!-- Page Title End-->
-
 <!-- Content
 ================================================== -->
 <div class="content-outer">
@@ -31,47 +30,54 @@ Template Name: Блог
 
         <div id="primary" class="eight columns">
 
-            <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
+           <?php
+           $args = array(
+                    'orderby'      => 'name',
+                    'order'        => 'ASC',
+                    'posts_per_page' => '20',
+                    'post_type' => 'post',
+                    'post_status' => 'publish',
+                );
+                $query = new WP_Query($args);
+                 if ($query->have_posts()) {
+                    while ($query->have_posts()) {
+                        $query->the_post(); ?>
+                        <article class="post">
 
-            <article class="post">
+                            <div class="entry-header cf">
 
-                <div class="entry-header cf">
+                                <h1><a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></h1>
 
-                    <h1><a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></h1>
+                                <p class="post-meta">
 
-                    <p class="post-meta">
+                                    <time class="date" datetime="2014-01-14T11:24"><?php the_date('M j, Y'); ?></time>
+                                    /
+                                    <span class="categories">
+                                     <a href="#">Design</a> /
+                                     <a href="#">User Inferface</a> /
+                                     <a href="#">Web Design</a>
+                                     </span>
 
-                        <time class="date" datetime=""><?php the_time('M j, Y'); ?></time>
-                        /
-                        <span class="categories">
-                     <a href="#">Design</a> /
-                     <a href="#">User Inferface</a> /
-                     <a href="#">Web Design</a>
-                     </span>
+                                </p>
 
-                    </p>
+                            </div>
 
-                </div>
+                            <div class="post-thumb">
+                                <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>"><?php the_post_thumbnail('post_thumb'); ?></a>
+                            </div>
 
-                <div class="post-thumb">
-                    <a href="single.html" title=""><img src="images/post-image/post-image-1300x500-01.jpg" alt="post-image" title="post-image"></a>
-                </div>
+                            <div class="post-content">
 
-                <div class="post-content">
+                                <?php do_excerpt(get_the_content(), 61); ?>
 
-                    <p>Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor,
-                        nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate
-                        cursus a sit amet mauris. Morbi accumsan ipsum velit. Nam nec tellus a odio tincidunt auctor a
-                        ornare odio. Sed non  mauris vitae erat consequat auctor eu in elit. </p>
+                            </div>
 
-                </div>
+                        </article> <!-- post end -->
 
-            </article> <!-- post end -->
+                    <?php }
+                    wp_reset_postdata();
 
-            <?php endwhile; else : ?>
-            <?php endif; ?>
-
-
+        } ?> 
 
             <!-- Pagination -->
             <nav class="col full pagination">

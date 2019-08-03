@@ -94,6 +94,7 @@ function myMenu() {
     register_nav_menu('top', 'Меню в шапке');
     register_nav_menu('bottom', 'Меню в подвале');
     add_theme_support( 'post-thumbnails', array( 'post', 'portfolio' ) );
+    add_image_size('post_thumb', 1300, 500, true);
     add_theme_support( 'title-tag' );
     add_filter( 'excerpt_length', function(){
         return 39;
@@ -120,5 +121,11 @@ function donwald_scripts() {
     wp_enqueue_script('slider', get_template_directory_uri() . "/assets/js/jquery.flexslider.js");
 	wp_enqueue_script('init', get_template_directory_uri() . "/assets/js/init.js");
 	wp_enqueue_script('dt', get_template_directory_uri() . "/assets/js/doubletaptogo.js");
+}
+function do_excerpt($string, $word_limit) {
+    $words = explode(' ', $string, ($word_limit + 1));
+    if (count($words) > $word_limit)
+        array_pop($words);
+    echo implode(' ', $words);
 }
 
