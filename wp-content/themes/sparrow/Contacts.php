@@ -45,38 +45,7 @@ Template Name: Контакты
               <div id="contact-form">
 
                   <!-- form -->
-                  <form name="contactForm" id="contactForm" method="post" action="">
-      					<fieldset>
-
-                        <div class="half">
-      						   <label for="contactName">Name <span class="required">*</span></label>
-      						   <input name="contactName" type="text" id="contactName" size="35" value="" />
-                        </div>
-
-                        <div class="half pull-right">
-      						   <label for="contactEmail">Email <span class="required">*</span></label>
-      						   <input name="contactEmail" type="text" id="contactEmail" size="35" value="" />
-                        </div>
-
-                        <div>
-      						   <label for="contactSubject">Subject</label>
-      						   <input name="contactSubject" type="text" id="contactSubject" size="35" value="" />
-                        </div>
-
-                        <div>
-                           <label  for="contactMessage">Message <span class="required">*</span></label>
-                           <textarea name="contactMessage"  id="contactMessage" rows="15" cols="50" ></textarea>
-                        </div>
-
-                        <div>
-                           <button class="submit">Submit</button>
-                           <span id="image-loader">
-                              <img src="images/loader.gif" alt="" />
-                           </span>
-                        </div>
-
-      					</fieldset>
-      				</form> <!-- Form End -->
+                  <?php echo do_shortcode('[contact-form-7 id="149" title="Untitled"]'); ?>
 
                   <!-- contact-warning -->
                   <div id="message-warning"></div>
@@ -189,4 +158,10 @@ Template Name: Контакты
       </div>
 
    </section> <!-- Tweet Section End-->
+   <script type="text/javascript">
+      var submitButton = document.getElementById('Submit');
+      submitButton.value = 'Submit';
+      document.getElementById('contactMessage').setAttribute('rows', 15);
+      document.getElementById('contactMessage').setAttribute('cols', 50);
+   </script>
    <?php get_footer(); ?>

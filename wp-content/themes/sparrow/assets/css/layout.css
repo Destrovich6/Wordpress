@@ -28,6 +28,7 @@
 /* a. Common Styles
 /* ------------------------------------------------------------------ */
 
+
 body { background: #D2D8D8 url(../images/bg.jpg); }
 img { border-radius: 3px; }
 .content-outer { background: #fff }
@@ -1128,7 +1129,8 @@ ol.commentlist {
    min-width: none;
    margin-bottom: 12px;
 }
-#contact-form button.submit {
+#contact-form input.submit {
+   width: auto !important;
    text-transform: uppercase;
  	letter-spacing: 2px;
    margin-top: 24px;
